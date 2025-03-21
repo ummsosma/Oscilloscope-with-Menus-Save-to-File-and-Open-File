@@ -1,4 +1,4 @@
-﻿namespace Lab9
+﻿namespace Lab12
 {
     partial class Form1
     {
@@ -54,12 +54,23 @@
             this.cboTerminal = new System.Windows.Forms.ComboBox();
             this.cboPorts = new System.Windows.Forms.ComboBox();
             this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acquireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.appendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grpBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.updSamplesPerChannel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updSampleRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updHighChannel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updLowChannel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpBox
@@ -86,7 +97,7 @@
             this.grpBox.Controls.Add(this.cboTerminal);
             this.grpBox.Controls.Add(this.cboPorts);
             this.grpBox.Font = new System.Drawing.Font("Garamond", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBox.Location = new System.Drawing.Point(18, 21);
+            this.grpBox.Location = new System.Drawing.Point(30, 74);
             this.grpBox.Name = "grpBox";
             this.grpBox.Size = new System.Drawing.Size(540, 410);
             this.grpBox.TabIndex = 0;
@@ -303,7 +314,7 @@
             this.chtData.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chtData.Legends.Add(legend1);
-            this.chtData.Location = new System.Drawing.Point(576, 21);
+            this.chtData.Location = new System.Drawing.Point(576, 74);
             this.chtData.Name = "chtData";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -313,15 +324,91 @@
             this.chtData.TabIndex = 1;
             this.chtData.Text = "chart1";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.acquireToolStripMenuItem,
+            this.clearChartToolStripMenuItem,
+            this.configToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1191, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.quitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.appendToolStripMenuItem});
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // quitToolStripMenuItem
+            // 
+            this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quitToolStripMenuItem.Text = "Quit";
+            // 
+            // acquireToolStripMenuItem
+            // 
+            this.acquireToolStripMenuItem.Name = "acquireToolStripMenuItem";
+            this.acquireToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.acquireToolStripMenuItem.Text = "Acquire";
+            // 
+            // clearChartToolStripMenuItem
+            // 
+            this.clearChartToolStripMenuItem.Name = "clearChartToolStripMenuItem";
+            this.clearChartToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.clearChartToolStripMenuItem.Text = "Clear Chart";
+            // 
+            // configToolStripMenuItem
+            // 
+            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.configToolStripMenuItem.Text = "Help";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Text = "New";
+            // 
+            // appendToolStripMenuItem
+            // 
+            this.appendToolStripMenuItem.Name = "appendToolStripMenuItem";
+            this.appendToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.appendToolStripMenuItem.Text = "Append";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1191, 450);
+            this.ClientSize = new System.Drawing.Size(1191, 536);
             this.Controls.Add(this.chtData);
             this.Controls.Add(this.grpBox);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Oscilloscope with Menus, Save to File and Open File";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpBox.ResumeLayout(false);
             this.grpBox.PerformLayout();
@@ -330,7 +417,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.updHighChannel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updLowChannel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -359,6 +449,16 @@
         private System.Windows.Forms.NumericUpDown updSampleRate;
         private System.Windows.Forms.NumericUpDown updHighChannel;
         private System.Windows.Forms.NumericUpDown updLowChannel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acquireToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearChartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem appendToolStripMenuItem;
     }
 }
 

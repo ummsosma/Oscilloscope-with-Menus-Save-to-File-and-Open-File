@@ -16,7 +16,7 @@ namespace Oscilloscope_with_Menus_Save_to_File_and_Open_File
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Lab9.Form1());
+            Application.Run(new Lab12.Form1());
         }
     }
 }

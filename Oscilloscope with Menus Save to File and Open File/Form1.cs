@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using NationalInstruments.DAQmx;
 
-namespace Lab9
+namespace Lab12
 {
     public partial class Form1 : Form
     {
