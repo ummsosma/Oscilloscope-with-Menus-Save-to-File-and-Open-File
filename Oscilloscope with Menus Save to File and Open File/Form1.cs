@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace Lab12
         private string[] channelNames;
         private const double MaxAdRate = 250000; // 250 kS/s board's max A/D rate
         private const double MaxAcquisitionTime = 9; // seconds
+        private double[,] currentChartData;
 
         public Form1()
         {
@@ -57,13 +59,12 @@ namespace Lab12
         {
             ConfigureChart();
         }
-
-        private void btnAcquire_Click(object sender, EventArgs e)
+        private void acquireToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AcquireData();
         }
 
-        private void btnClearChart_Click(object sender, EventArgs e)
+        private void clearChartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             chtData.Series.Clear();
         }
@@ -86,6 +87,93 @@ namespace Lab12
         private void updHighChannel_ValueChanged(object sender, EventArgs e)
         {
             UpdateAcquisitionInfo();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+
+            }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.FileName = "data.csv";
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            saveFileDialog.Title = "Save Data File";
+            saveFileDialog.OverwritePrompt = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                try
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        //Write the header information to the csv file
+                        writer.WriteLine($"Date: {System.DateTime.Today}");
+                        writer.WriteLine($"Time: {System.DateTime.Now}");
+                        writer.WriteLine($"# Points:");
+                        //Make a column header row
+                        string[] header = new string[chtData.Series.Count + 1];
+                        header[0] = "Elapsed Time";
+                        var seriesCount = 0;
+                        //Add the series names to the header
+                        foreach (var series in chtData.Series)
+                        {
+                            header[seriesCount + 1] = series.Name;
+                            seriesCount++;
+                        }
+                        //Write the header to the file
+                        writer.WriteLine(string.Join(",", header));
+
+                        // Write the data from the chart to the CSV file
+                        for (int timeStep = 0; timeStep < currentChartData.GetLength(1); timeStep++) // Loop through each column
+                        {
+                            // Create a row to hold the data for this time step
+                            string[] row = new string[currentChartData.GetLength(0) + 1]; // +1 for the elapsed time column
+
+                            // Calculate and add the elapsed time to the row
+                            double elapsedTime = timeStep / (double)updSampleRate.Value; // Elapsed time in seconds
+                            row[0] = elapsedTime.ToString("F3"); // Format to 3 decimal places
+
+                            // Loop through each channel (rows) to add voltage values to the row
+                            for (int channel = 0; channel < currentChartData.GetLength(0); channel++)
+                            {
+                                // Add the voltage value for this channel and time step
+                                row[channel + 1] = currentChartData[channel, timeStep].ToString("F3"); // Format to 3 decimal places
+                            }
+
+                            // Write the row to the CSV file as a comma-separated string
+                            writer.WriteLine(string.Join(",", row));
+                        }
+
+                        // Close the file after writing all data
+                        writer.Close();
+                    }
+                    MessageBox.Show("File saved successfully!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving file: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Save operation canceled.");
+            }
         }
 
         //=================================//
@@ -188,6 +276,7 @@ namespace Lab12
             {
                 AnalogMultiChannelReader reader = (AnalogMultiChannelReader)result.AsyncState;
                 double[,] data = reader.EndReadMultiSample(result);
+                currentChartData = data;
 
                 double selectedRange = GetSelectedVoltageRange();
                 double sampleRate = (double)updSampleRate.Value;
