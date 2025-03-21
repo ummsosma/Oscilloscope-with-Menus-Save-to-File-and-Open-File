@@ -57,13 +57,12 @@ namespace Lab12
         {
             ConfigureChart();
         }
-
-        private void btnAcquire_Click(object sender, EventArgs e)
+        private void acquireToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AcquireData();
         }
 
-        private void btnClearChart_Click(object sender, EventArgs e)
+        private void clearChartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             chtData.Series.Clear();
         }
@@ -86,6 +85,11 @@ namespace Lab12
         private void updHighChannel_ValueChanged(object sender, EventArgs e)
         {
             UpdateAcquisitionInfo();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         //=================================//
